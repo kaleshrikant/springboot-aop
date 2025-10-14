@@ -1,0 +1,45 @@
+### Create Product
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "description": "Gaming Laptop",
+  "price": 1299.99,
+  "category": "Electronics",
+  "stock": 50
+}
+
+### Get All Products
+GET http://localhost:8080/api/products
+
+### Get Product by ID
+GET http://localhost:8080/api/products/1
+
+### Update Product
+PUT http://localhost:8080/api/products/1
+Content-Type: application/json
+
+{
+  "name": "Gaming Laptop Pro",
+  "description": "High-end Gaming Laptop",
+  "price": 1499.99,
+  "category": "Electronics",
+  "stock": 30
+}
+
+### Delete Product
+DELETE http://localhost:8080/api/products/1
+
+### Search by Category
+GET http://localhost:8080/api/products/search?category=Electronics
+
+### Create Invalid Product (Validation Test)
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "name": "",
+  "price": -10,
+  "category": ""
+}
