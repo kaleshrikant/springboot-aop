@@ -1,5 +1,6 @@
 package com.kaleshrikant.spring;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -15,7 +16,9 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
 
 	@Before("execution(* com.kaleshrikant.spring.ShoppingCart.checkout(..))")
-	public void beforeLogger() {
+	public void beforeLogger(JoinPoint joinPoint) {
+		// System.out.println(joinPoint.getSignature());
+		System.out.println(joinPoint.getArgs()[0].toString());
 		System.out.println("🔍 [AOP] LoggingAspect Before Logger");
 	}
 

@@ -16,4 +16,5 @@ public class ShoppingCart {
 	public void checkout(String status) {
 		System.out.println("checkout() from ShoppingCart called");
 	}
+
 }
