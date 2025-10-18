@@ -17,4 +17,7 @@ public class ShoppingCart {
 		System.out.println("checkout() from ShoppingCart called");
 	}
 
+	public int quantity() {
+		return 2;
+	}
 }
