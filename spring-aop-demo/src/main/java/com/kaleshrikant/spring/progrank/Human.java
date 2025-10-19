@@ -1,10 +1,7 @@
 package com.kaleshrikant.spring.progrank;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +17,7 @@ import java.util.Arrays;
 @Component
 public class Human {
 
-	@Pointcut("execution(* com.kaleshrikant.spring.progrank.*.study*(..))")
+/*	@Pointcut("execution(* com.kaleshrikant.spring.progrank.*.study*(..))")
 	public void beforePointCut() {}
 
 	//@Pointcut("execution(public void com.kaleshrikant.spring.progrank.Employee.studySomething())")
@@ -40,5 +37,14 @@ public class Human {
 	@After("afterPointCut()")
 	public void sleep() {
 		System.out.println("\nGood Night  🌙 [AOP] Human.sleep() triggered");
+	}*/
+
+	@Pointcut("execution(* com.kaleshrikant.spring.progrank.*.study*(..))")
+	public Object afterReturnPointCut() { return null; }
+
+	@AfterReturning(value = "execution(* com.kaleshrikant.spring.progrank.*.study*(..))", returning = "numValue")
+	public void afterReturning(int numValue) {
+		System.out.println("\n 🔍 [AOP] Human.afterReturning() triggered -> numValue = "+numValue);
 	}
+
 }

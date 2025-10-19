@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Student {
-	public void studyAnything(int start, int end) {
+	public int studyAnything(int start, int end) {
 		System.out.println("I am in school and studying right now..! from "+start+" to "+end);
+		return 333;
 	}
 }

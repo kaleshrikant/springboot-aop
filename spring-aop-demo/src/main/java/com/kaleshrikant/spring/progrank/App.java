@@ -13,9 +13,12 @@ public class App {
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
 		Student student = context.getBean("student",Student.class);
-			student.studyAnything(9,6);
+		int returnedValue = student.studyAnything(9, 6);
+		System.out.println(" 🔍 [MAIN] Returned Value : "+returnedValue);
 
+		/*
 		Employee employee = context.getBean("employee", Employee.class);
 			 employee.studySomething();
+		*/
 	}
 }
