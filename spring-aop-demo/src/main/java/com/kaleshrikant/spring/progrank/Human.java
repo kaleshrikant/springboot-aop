@@ -39,7 +39,13 @@ public class Human {
 		System.out.println("\nGood Night  🌙 [AOP] Human.sleep() triggered");
 	}*/
 
-	@AfterReturning(value = "execution(* com.kaleshrikant.spring.progrank.*.study*(..))", returning = "numValue")
+	@Pointcut("execution(* com.kaleshrikant.spring.progrank.*.study*(..))")
+	public void afterReturnPointCut() { }
+
+	@AfterReturning(
+			value = "afterReturnPointCut())",
+			returning = "numValue"
+	)
 	public void afterReturning(int numValue) {
 		System.out.println("\n 🔍 [AOP] Human.afterReturning() triggered -> numValue = "+numValue);
 	}
