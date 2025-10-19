@@ -37,7 +37,7 @@ public class Human {
 	@After("afterPointCut()")
 	public void sleep() {
 		System.out.println("\nGood Night  🌙 [AOP] Human.sleep() triggered");
-	}*/
+	}
 
 	@Pointcut("execution(* com.kaleshrikant.spring.progrank.*.study*(..))")
 	public void afterReturnPointCut() { }
@@ -48,6 +48,19 @@ public class Human {
 	)
 	public void afterReturning(int numValue) {
 		System.out.println("\n 🔍 [AOP] Human.afterReturning() triggered -> numValue = "+numValue);
+	}*/
+
+	@Pointcut("execution(* com.kaleshrikant.spring.progrank.*.doOperation*(..))")
+	public void afterThorowingPointCut() {}
+
+	@AfterThrowing(value ="afterThorowingPointCut()", throwing = "ex")
+	public void afterThrowing(JoinPoint joinPoint, MyException ex) {
+		System.out.println("\n ❌ [AOP] Exception occurred in method: " + joinPoint.getSignature().getName());
+		System.out.println("This is my throw Exception : "+ex);
+		System.out.println(" 🔴 Exception type: " + ex.getClass().getSimpleName());
+		System.out.println(" 🔴 Exception message: " + ex.getMessage());
+		System.out.println(" 🔴 Stack trace:");
+		ex.printStackTrace();
 	}
 
 }
