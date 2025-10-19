@@ -13,4 +13,8 @@ public class Student {
 		System.out.println("I am in school and studying right now..! from "+start+" to "+end);
 		return 333;
 	}
+
+	public String doOperation(){
+		throw new MyException("This is my exception");
+	}
 }
