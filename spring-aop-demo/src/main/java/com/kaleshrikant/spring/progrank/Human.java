@@ -1,6 +1,7 @@
 package com.kaleshrikant.spring.progrank;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
@@ -48,7 +49,7 @@ public class Human {
 	)
 	public void afterReturning(int numValue) {
 		System.out.println("\n 🔍 [AOP] Human.afterReturning() triggered -> numValue = "+numValue);
-	}*/
+	}
 
 	@Pointcut("execution(* com.kaleshrikant.spring.progrank.*.doOperation*(..))")
 	public void afterThorowingPointCut() {}
@@ -61,6 +62,30 @@ public class Human {
 		System.out.println(" 🔴 Exception message: " + ex.getMessage());
 		System.out.println(" 🔴 Stack trace:");
 		ex.printStackTrace();
+	}*/
+
+	@Around("execution(int com.kaleshrikant.spring.progrank.Employee.rankOfVideo(int, int))")
+	public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
+		Object [] args = joinPoint.getArgs();
+
+		int originalViews = (int) args[0];
+		int originalWatchTime = (int) args[1];
+
+		args[0] = originalViews - 50;
+		args[1] = originalWatchTime - 20;
+
+		System.out.println("updated noOfViews = "+args[0]);
+		System.out.println("updated watchTime = "+args[1]);
+
+		Object result = null;
+
+		try {
+			result = joinPoint.proceed(args);
+		} catch(Throwable throwable) {
+			System.out.println(" ❌ [AOP] Exception occurred: " + throwable.getMessage());
+		}
+		System.out.println("\n 🔍 [AOP] Human.aroundAdvice() triggered -> final Rank = "+result);
+		return result;
 	}
 
 }
