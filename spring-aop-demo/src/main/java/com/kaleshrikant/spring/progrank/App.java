@@ -14,6 +14,7 @@ public class App {
 
 		Student student = context.getBean("student",Student.class);
 			student.studyAnything();
+
 		Employee employee = context.getBean("employee", Employee.class);
 			employee.studySomething();
 	}
